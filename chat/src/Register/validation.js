@@ -1,7 +1,7 @@
 
 // the function return true if the password is valid.
 function validationPassword(password) {
-    if(length.password < 6) {
+    if(password.length < 6) {
         alert("Password must be at least 6 characters long");
         return false;
     }
@@ -15,3 +15,5 @@ function validationPassword(password) {
     }
     return true;
 }
+
+export default validationPassword;
