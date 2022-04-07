@@ -1,11 +1,11 @@
 
 import './login.css';
 import Register from '../Register/Register';
-import {BrowserRouter as Router, Route, Link, BrowserRouter, Routes} from 'react-router-dom';
-
+import {useNavigate} from 'react-router-dom';
 
 
 function Login(){
+    const navigate = useNavigate();
     return(
     <div class="login">
     <div class="title">
@@ -23,14 +23,8 @@ function Login(){
         <a href="chat.html"><button class="btn btn-light">login</button></a>
     </form> 
     <span> Not registered?
-    <BrowserRouter>
-       <Link to="/Register" >click </Link>
-       <Routes>
-           <Route path='/Register' element={ <Register/ >}></Route> 
-       </Routes>
-       </BrowserRouter>
-       
-        <span>to register</span>
+        <button type="button" class="btn" className="btn-link" onClick={() => navigate("/Register")} >click here </button>
+    <span>to register</span>
     </span>
     </div>
     );
