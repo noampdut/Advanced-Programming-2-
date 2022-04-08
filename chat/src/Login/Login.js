@@ -1,10 +1,11 @@
 
 import './login.css';
-import Register from '../Register/Register';
 import {useNavigate} from 'react-router-dom';
-import DataBase from '../DataBase/dataBase';
+import { userIdentification } from '../DataBase/dataBase';
+
 
 function Login(){
+    
     const navigate = useNavigate();
     return(
     <div className="login">
@@ -14,13 +15,13 @@ function Login(){
     <form>
         <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">Username:</label>
-            <input type="name" className="form-control"></input>
+            <input type="name" id="userName"  className="form-control"></input>
         </div>
         <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">Password:</label>
-            <input type="password" className="form-control" id="exampleInputPassword1"></input>
+            <input type="password" className="form-control"  id="exampleInputPassword1"></input>
         </div>
-        <a href="chat.html"><button className="btn btn-light">login</button></a>
+        <button type="button" className="btn btn-light" onClick={() =>userIdentification(document.getElementById('userName').value ,document.getElementById('exampleInputPassword1').value)} >login </button>
     </form> 
     <span> Not registered?
         <button type="button" className="btn btn-link" onClick={() => navigate("/Register")} >click here </button>
@@ -29,6 +30,7 @@ function Login(){
     </div>
     );
 }
- 
+
+
 
 export default Login;

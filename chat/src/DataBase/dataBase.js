@@ -1,7 +1,8 @@
-import { useState } from "react";
+import ReactDOM from 'react-dom/client';
+import React from 'react';
 
 const usersList=[{
-    'userName':'noamPdut',
+    'userName':'noampdut',
     'nickName':'noamit',
     'picture':'luli.jpeg',
     'password':'n123456'}, { 
@@ -27,7 +28,15 @@ function isExists(username){
     return false;
 }
 
-
-
-
-export {insertNewUser, isExists};
+function userIdentification(username, Password) {
+    for (var i = 0; i < usersList.length; i++) {
+        if (usersList[i].userName == username && usersList[i].password == Password) {
+            alert("You are signed")
+            //this.props.history.push('/ChattingPage');
+            return true;
+        }
+        alert("You haven't signed up for the site yet.")
+        return false;
+    }
+}
+export {insertNewUser, isExists, userIdentification};

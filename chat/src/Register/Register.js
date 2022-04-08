@@ -17,6 +17,7 @@ const Register = () => {
         if (checkForm(userName, nickName, picture, password, validationPassword))
         {
             insertNewUser(userName, nickName, picture, password);
+            this.props.history.push('/Login');
         }
     };
 
