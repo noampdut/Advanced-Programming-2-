@@ -2,32 +2,33 @@
 import './login.css';
 import Register from '../Register/Register';
 import {useNavigate} from 'react-router-dom';
-
+import DataBase from '../DataBase/dataBase';
 
 function Login(){
     const navigate = useNavigate();
     return(
-    <div class="login">
-    <div class="title">
+    <div className="login">
+    <div className="title">
         Login
     </div>
     <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username:</label>
-            <input type="name" class="form-control"></input>
+        <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Username:</label>
+            <input type="name" className="form-control"></input>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="exampleInputPassword1"></input>
+        <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Password:</label>
+            <input type="password" className="form-control" id="exampleInputPassword1"></input>
         </div>
-        <a href="chat.html"><button class="btn btn-light">login</button></a>
+        <a href="chat.html"><button className="btn btn-light">login</button></a>
     </form> 
     <span> Not registered?
-        <button type="button" class="btn" className="btn-link" onClick={() => navigate("/Register")} >click here </button>
+        <button type="button" className="btn btn-link" onClick={() => navigate("/Register")} >click here </button>
     <span>to register</span>
     </span>
     </div>
     );
 }
+ 
 
 export default Login;

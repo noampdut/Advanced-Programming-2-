@@ -1,35 +1,59 @@
 import './register.css';
+import { useState } from "react";
 import validationPassword from './validation';
+import {insertNewUser,isExists} from '../DataBase/dataBase';
 
-function Register() {
+const Register = () => {
+    const [formData, setFormData] = useState({userName: '', nickName: '', 
+    picture: '', password: '', validationPassword:''});
+    const {userName, nickName, picture, password, validationPassword} = formData;
+    const onChange = e => 
+    {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    };
+    const onSubmit = e => 
+    {
+        e.preventDefault();
+        if (checkForm(userName, nickName, picture, password, validationPassword))
+        {
+            insertNewUser(userName, nickName, picture, password);
+        }
+    };
+
  return (
-     <div class="register">
-         <div class="title">
+     <div className="register">
+         <div className="title">
              Register
          </div>
+
          <form>
-             <div class="mb-3">
-                 <label for="exampleInputEmail1" class="form-label">Username:</label>
-                 <input type="name" id="userName" class="form-control"></input>
+             <div className="mb-3">
+                 <label htmlFor="exampleInputEmail1" className="form-label">Username:</label>
+                 <input type="text" name="userName" value={userName} 
+                 id="userName" className="form-control" onChange={onChange}/>
              </div>
-             <div class="mb-3">
-                 <label for="exampleInputEmail1" class="form-label">Nickname:</label>
-                 <input type="name" id="nickName" class="form-control"></input>
-             </div>
-
-             <div class="input-group mb-3">
-                 <input type="file" id="picture" class="form-control"></input>
+             <div className="mb-3">
+                 <label htmlFor="exampleInputEmail1" className="form-label">Nickname:</label>
+                 <input type="text" name="nickName" value={nickName}
+                  id="nickName" className="form-control" onChange={onChange}/>
              </div>
 
-             <div class="mb-3">
-                 <label for="exampleInputPassword1" class="form-label">Password:</label>
-                 <input type="password" class="form-control" id="password"></input>
+             <div className="input-group mb-3">
+                 <input type="file" name="picture" value={picture} id="picture" 
+                 className="form-control" onChange={onChange}/>
              </div>
-             <div class="mb-3">
-                 <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
-                 <input type="password" class="form-control" id="confirmPassword"></input>
+
+             <div className="mb-3">
+                 <label htmlFor="exampleInputPassword1" className="form-label">Password:</label>
+                 <input type="password" className="form-control" onChange={onChange}
+                 value={password} name="password" id="password"/>
              </div>
-             <button type="button" onClick={checkForm} class="btn btn-light" >Register</button>
+             <div className="mb-3">
+                 <label htmlFor="exampleInputPassword1" className="form-label">Confirm Password:</label>
+                 <input type="password" name="validationPassword" className="form-control" onChange={onChange}
+                 value={validationPassword} id="confirmPassword"/>
+             </div>
+             <button type="button" onClick={onSubmit} className="btn btn-light" >Register</button>
          </form>
 
      </div>  
@@ -38,13 +62,11 @@ function Register() {
 }
 
 
-function checkForm() {
-var userName = document.getElementById("userName").value;
-var nickName = document.getElementById("nickName").value;
-var password = document.getElementById("password").value;
-var confirmPassword = document.getElementById("confirmPassword").value;
-var picture = document.getElementById("picture").value;
-
+function checkForm(userName, nickName, picture, password, confirmPassword) {
+if (isExists(userName)){
+    alert("Username is already taken, please choose another username");
+    return false;
+}
 if(userName.length == 0 || nickName.length==0 || password.length==0 || confirmPassword.length==0) {
  alert("Please fill all the fields");
  return false;
@@ -58,9 +80,9 @@ if(confirmPassword != password) {
     alert("Invalid password verification.");
     return false;
 }
-return true;
+
+    alert("Created new user");
+    return true;
 }
-
-
 
 export default Register;
