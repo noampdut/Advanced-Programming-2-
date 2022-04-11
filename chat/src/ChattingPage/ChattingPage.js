@@ -3,8 +3,8 @@ function ChattingPage(){
 
     return(
         <div className="title">
-        chatting page
-    </div>
+            chatting page
+        </div>
 
     );
 }
