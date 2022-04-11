@@ -13,7 +13,7 @@ const MessagesBox = () => {
          const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
         // contacts.push({newContact});
         setContactsList([...contactsList, ...newContact]);
-        alert("added!!!!!!");
+        alert("added!!!!!!!");
 
          
      }
