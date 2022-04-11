@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ShowMessages from "./Chatroom/ChatScreen/ShowMessages";
 
-const Messages=[{
+const MessagesList=[{
     'text':"Hello!",
     'getM':true},
     {'text':"Hii, how are you?",
@@ -10,9 +10,7 @@ const Messages=[{
     'getM':true}];
 
 function Messages(){
-    const [messages,setMessages] = useState(Messages);
-
-    ShowMessages(messages);
+    ShowMessages(MessagesList);
 }
 
 function insertNewMessages(text){

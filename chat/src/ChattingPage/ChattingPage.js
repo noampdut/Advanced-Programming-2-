@@ -1,5 +1,5 @@
-import ChatScreen from "./Chatroom/StartScreen/ChatScreen/ChatScreen";
-import StartScreen from "./Chatroom/StartScreen/StartScreen/StartScreen";
+import ChatScreen from "./Chatroom/ChatScreen/ChatScreen";
+import StartScreen from "./Chatroom/StartScreen/StartScreen";
 
 function ChattingPage(){
 

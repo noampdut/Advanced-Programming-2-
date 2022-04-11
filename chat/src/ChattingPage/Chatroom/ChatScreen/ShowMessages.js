@@ -1,14 +1,29 @@
 import MassageGet from "./MassageGet";
 import MassageSent from "./MassageSent";
 
+function messageG(str){
+    return(
+        <MassageGet text={str} />
+    );
+}
+function messageS(str){
+    return(
+        <MassageSent text={str} />
+    );
+}
+
 function ShowMessages(messages){
-   for (var i = 0; i< messages.length(); i++){
+    var x= messages[0].text.getString;
+    x=3;
+    alert(x);
+   for (var i = 0; i< messages.length; i++){
         if (messages[i].getM == true){
-            MassageGet(messages[i].text);
+            messageG(messages[i].text.toString);
         }
-        MassageSent(messages[i].text);
+        messageS(messages[i].text.toString);
    }
 }
+
 
 
 export default ShowMessages;
