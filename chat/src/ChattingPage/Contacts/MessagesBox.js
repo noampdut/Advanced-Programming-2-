@@ -3,30 +3,23 @@ import AddContactButton from "./AddContactButton";
 import ContactsListResult from "./ContactsListResult";
 import contacts from "./contacts";
 import { useState } from "react";
+import { render } from "@testing-library/react";
 
 
 const MessagesBox = () => {
 
     const [contactsList, setContactsList] = useState(contacts);
-     const addContact = function(e){
-         //alert("line 12 Messages Box!");
-         const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
-        // contacts.push({newContact});
-        setContactsList([...contactsList, ...newContact]);
-        alert("added!!!!!!!!!");
 
-         
+     const addContact = function(nickName){
+        setContactsList(contacts.unshift({nickName:nickName, lastMessage :'', time: '', picture: 'luli.jpeg'}));
      }
 
      const onchange = function(e){
-        //alert("line 18 Messages Box!!");
         const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
-        setContactsList([...contactsList, ...newContact]);
-    }
-
-    
+        setContactsList([...contactsList, ...newContact]);  
+    }    
  
-    return (
+   return (
 
         <div class="container py-5 px-4">
           
@@ -46,7 +39,7 @@ const MessagesBox = () => {
                         <div class="messages-box"> 
                             <div class="list-group rounded-0">
                             
-                               <ContactsListResult contactsList={contactsList}  />
+                               <ContactsListResult contactsList={contacts}  />
                                 
                             </div>
                         </div>
@@ -65,8 +58,8 @@ const MessagesBox = () => {
                     </div>
 
     );
-
-}
+    
+} 
 
 function insertNewContact(nickName){
     contacts.push({nickName});

@@ -6,18 +6,20 @@ import {useState} from 'react';
 function Popup(props) {
 
     
-    
+   
     const onChange = e => 
     {
         
         props.onchange(e);
-        //alert("yeeeh!");
+        
     };
-    const onSubmit = e => 
+    const onSubmit = e =>
     {
-    
+        //alert("submit");
+        const nickName = document.getElementById("nickName").value;    
         e.preventDefault();
-        //props.addContact(e);
+        props.addContact(nickName);
+        props.setTrigger(false);
         
     };
 
@@ -27,9 +29,9 @@ function Popup(props) {
             <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Contact`s Name</label>
-                    <input type="name" id="nickName" name="nickName" onChange={onChange} className="form-control"></input>
+                    <input type="text" id="nickName"  name="nickName" onChange={onChange} className="form-control"></input>
                 </div>
-                <button type="button" className="btn btn-light" onSubmit={onSubmit} >Add </button>&nbsp;&nbsp;
+                <button type="button" className="btn btn-light" onClick={onSubmit} >Add </button>&nbsp;&nbsp;
                 <button type="button" className="btn btn-light" onClick={() => props.setTrigger(false)}>close</button>
                 {props.children}
             </form>
