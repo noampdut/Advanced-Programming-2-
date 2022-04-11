@@ -9,12 +9,11 @@ const Register = () => {
 
     const {userName, nickName, picture, password, validationPassword} = formData;
     
-    const onChange = e => 
-    {
+    const onChange = e => {
         setFormData({...formData, [e.target.name]: e.target.value});
     };
-    const onSubmit = e => 
-    {
+    
+    const onSubmit = e => {
         e.preventDefault();
         if (checkForm(userName, nickName, picture, password, validationPassword))
         {

@@ -7,6 +7,7 @@ import PopUp from './PopUp';
 import VoicePopUp from './VoicePopUp';
 import { useState } from 'react';
 import React from 'react';
+import Messages from '../../Messages';
 
 function ChatScreen() {
     const [buttonPopUp, setButtonPopUp] = useState(false);
@@ -16,11 +17,10 @@ function ChatScreen() {
     <div className='chatBackground'>
         <CurrentUserChat user="Noam Pdut" picture='./luli.png'/>
         <Input setValue={setButtonPopUp} setValueRecord={setRecordPopUp}/>
-        <MassageGet text="hiiiinggggggggggggggggggggggggggi"/>
-        <MassageSent text="fdkvdhmklthmklfgmlknfflfkvldfkfdkl;o!"/>
+        <MassageGet text="hiiiii"/>
+        <MassageSent text="BIIiiiiiiiii!"/>
         <PopUp value={buttonPopUp} setValue={setButtonPopUp}/>
         <VoicePopUp value={recordPopUp} setValue={setRecordPopUp}/>
-
     </div>
         
     );
