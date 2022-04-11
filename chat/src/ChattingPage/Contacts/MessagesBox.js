@@ -10,21 +10,33 @@ const MessagesBox = () => {
     const [contactsList, setContactsList] = useState(contacts);
      const addContact = function(e){
          //alert("line 12 Messages Box!");
+<<<<<<< HEAD
         // const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
         // contacts.push({newContact});
         //setContactsList([...contactsList, ...newContact]);
         //setContactsList([...contactsList, ...newContact]);
         console.log(filter);
         alert("added!!!!!!!");
+=======
+         const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
+        // contacts.push({newContact});
+        setContactsList([...contactsList, ...newContact]);
+        alert("added!!");
+>>>>>>> ca7288eb02329af2e673ecb2640daf6c09cecdd9
 
          
      }
 
      const onchange = function(e){
         //alert("line 18 Messages Box!!");
+<<<<<<< HEAD
         //const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
        // setContactsList([...contactsList, ...newContact]);
        setContactsList({ nickName: e.target.value });
+=======
+        const newContact = [{nickName:e.target.value, lastMessage :'', time: '', picture: 'luli.jpeg'}];
+        setContactsList([...contactsList, ...newContact]);
+>>>>>>> ca7288eb02329af2e673ecb2640daf6c09cecdd9
     }
 
     

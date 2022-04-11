@@ -14,9 +14,7 @@ const usersList=[{
 
 function insertNewUser(userName, nickName, picture, password){
     usersList.push({userName, nickName, picture, password});
-    //const [users, setUsers]=useState(usersList);
 
-    //const user={'userName':'', 'nickName':'', 'picture':'', 'password':''};
 }
 
 function isExists(username){
@@ -32,7 +30,6 @@ function userIdentification(username, Password) {
     for (var i = 0; i < usersList.length; i++) {
         if (usersList[i].userName == username && usersList[i].password == Password) {
             alert("You are signed")
-            //this.props.history.push('/ChattingPage');
             return true;
         }
         alert("You haven't signed up for the site yet.")
