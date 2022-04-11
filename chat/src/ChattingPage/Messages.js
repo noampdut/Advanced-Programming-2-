@@ -10,7 +10,7 @@ const MessagesList=[{
     'getM':true}];
 
 function Messages(){
-    ShowMessages(MessagesList);
+   return ShowMessages(MessagesList);
 }
 
 function insertNewMessages(text){

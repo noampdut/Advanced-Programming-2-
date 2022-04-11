@@ -13,15 +13,13 @@ function messageS(str){
 }
 
 function ShowMessages(messages){
-    var x= messages[0].text.getString;
-    x=3;
-    alert(x);
-   for (var i = 0; i< messages.length; i++){
-        if (messages[i].getM == true){
-            messageG(messages[i].text.toString);
-        }
-        messageS(messages[i].text.toString);
-   }
+    return messages.map(message => 
+        {
+            if (message.getM == true){
+                return messageG(message.text.toString());
+            }
+            return messageS(message.text.toString());
+        });
 }
 
 
