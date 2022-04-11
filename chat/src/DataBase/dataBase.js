@@ -1,5 +1,3 @@
-import ReactDOM from 'react-dom/client';
-import React from 'react';
 
 const usersList=[{
     'userName':'noampdut',
