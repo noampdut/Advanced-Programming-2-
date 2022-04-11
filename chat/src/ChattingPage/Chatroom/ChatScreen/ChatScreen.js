@@ -18,8 +18,7 @@ function ChatScreen() {
         <CurrentUserChat user="Noam Pdut" picture='./luli.png'/>
         <Input setValue={setButtonPopUp} setValueRecord={setRecordPopUp}/>
     
-        <MassageGet text="hiiiii"/>
-        <MassageSent text="Bi!"/>
+        
         <Messages />
         <PopUp value={buttonPopUp} setValue={setButtonPopUp}/>
         <VoicePopUp value={recordPopUp} setValue={setRecordPopUp}/>

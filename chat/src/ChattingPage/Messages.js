@@ -7,7 +7,12 @@ const MessagesList=[{
     {'text':"Hii, how are you?",
     'getM':false},
     {'text':"Great!",
-    'getM':true}];
+    'getM':true},
+    {'text':"Great!",
+    'getM':true},
+    {'text':"check",
+    'getM':false
+    }];
 
 function Messages(){
    return ShowMessages(MessagesList);
