@@ -6,7 +6,9 @@ import {insertNewUser,isExists} from '../DataBase/dataBase';
 const Register = () => {
     const [formData, setFormData] = useState({userName: '', nickName: '', 
     picture: '', password: '', validationPassword:''});
+
     const {userName, nickName, picture, password, validationPassword} = formData;
+    
     const onChange = e => 
     {
         setFormData({...formData, [e.target.name]: e.target.value});

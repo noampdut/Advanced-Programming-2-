@@ -1,0 +1,15 @@
+.popup{
+    position: absolute;
+    right: 15%;
+    width: 250px;
+    height: 135px;
+}
+.popup-inner{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.myClose{
+    position: absolute;
+    right: 0%;
+}
