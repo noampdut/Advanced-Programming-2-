@@ -1,17 +1,18 @@
 import './input.css';
-import {React, useState} from 'react';
-import insertNewMessages from '..src/ChattingPage/Messages';
+import {React} from 'react';
 
 function Input(props) {
-    const[message, setMessage] = useState("");
     
-    const onChange = e =>{  
-        setMessage(e.target.value);
-    };
-
     const onClick = e =>{
         e.preventDefault();
-        insertNewMessages(message);
+        props.addMessage(document.getElementById("message").value);
+        document.getElementById("message").value = "";
+    };
+
+    const handleKeypress = e => {
+      if (e.key === "Enter") {
+        onClick(e);
+      }
     };
 
     return (
@@ -39,7 +40,7 @@ function Input(props) {
                     </svg>
                 </a></li>
             </ul>
-            <input type="text" className="form-control" aria-label="Text input with dropdown button" name="text" value={text} onChange={onChange}></input>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" id="message" onKeyPress={handleKeypress}></input>
             <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={onClick}>Send</button>
         </div>
     );
