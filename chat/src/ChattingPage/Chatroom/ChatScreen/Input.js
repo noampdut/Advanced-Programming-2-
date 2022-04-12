@@ -1,9 +1,21 @@
 import './input.css';
-import React from 'react';
+import {React, useState} from 'react';
+import insertNewMessages from '..src/ChattingPage/Messages';
 
 function Input(props) {
+    const[message, setMessage] = useState("");
+    
+    const onChange = e =>{  
+        setMessage(e.target.value);
+    };
+
+    const onClick = e =>{
+        e.preventDefault();
+        insertNewMessages(message);
+    };
 
     return (
+        
         <div className="input-group mb-0 myInput">
             <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul className="dropdown-menu myDropDown">
@@ -27,8 +39,8 @@ function Input(props) {
                     </svg>
                 </a></li>
             </ul>
-            <input type="text" className="form-control" aria-label="Text input with dropdown button"></input>
-            <button className="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" name="text" value={text} onChange={onChange}></input>
+            <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={onClick}>Send</button>
         </div>
     );
 }

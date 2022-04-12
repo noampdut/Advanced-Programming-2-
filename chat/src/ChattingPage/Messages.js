@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ShowMessages from "./Chatroom/ChatScreen/ShowMessages";
 
 const MessagesList=[{
@@ -19,7 +18,7 @@ function Messages(){
 }
 
 function insertNewMessages(text){
-    Messages.push({text});
+    MessagesList.push({'text': text, 'getM': false});
 }
 
 
