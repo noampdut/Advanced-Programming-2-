@@ -3,7 +3,7 @@ function ContactInList({nickName, time, lastMessage, picture}) {
 
     return (
 
-        <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+        <button href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
             <div class="media"><img src={picture} alt="user" width="50" class="rounded-circle"></img>
                 <div class="media-body ml-4">
                     <div class="d-flex align-items-center justify-content-between mb-1">
@@ -12,7 +12,7 @@ function ContactInList({nickName, time, lastMessage, picture}) {
                     <p class="font-italic text-muted mb-0 text-small">{lastMessage}</p>
                 </div>
             </div>
-        </a>
+        </button>
 
     );
 
