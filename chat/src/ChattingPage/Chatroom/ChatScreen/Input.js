@@ -1,9 +1,22 @@
 import './input.css';
-import React from 'react';
+import {React} from 'react';
 
 function Input(props) {
+    
+    const onClick = e =>{
+        e.preventDefault();
+        props.addMessage(document.getElementById("message").value);
+        document.getElementById("message").value = "";
+    };
+
+    const handleKeypress = e => {
+      if (e.key === "Enter") {
+        onClick(e);
+      }
+    };
 
     return (
+        
         <div className="input-group mb-0 myInput">
             <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul className="dropdown-menu myDropDown">
@@ -27,8 +40,8 @@ function Input(props) {
                     </svg>
                 </a></li>
             </ul>
-            <input type="text" className="form-control" aria-label="Text input with dropdown button"></input>
-            <button className="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" id="message" onKeyPress={handleKeypress}></input>
+            <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={onClick}>Send</button>
         </div>
     );
 }
