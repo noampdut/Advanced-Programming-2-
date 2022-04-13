@@ -1,8 +1,6 @@
 import './chatScreen.css';
 import CurrentUserChat from './CurrentUserChat';
 import Input from './Input';
-import MassageGet from './MassageGet';
-import MassageSent from './MassageSent';
 import PopUp from './PopUp';
 import VoicePopUp from './VoicePopUp';
 import { useState } from 'react';

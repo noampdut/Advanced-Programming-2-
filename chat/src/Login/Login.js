@@ -8,7 +8,7 @@ function Login(){
 
     const onsubmit = e => {
         if (userIdentification(document.getElementById('userName').value ,document.getElementById('exampleInputPassword1').value)){
-            navigate("/MessagesBox");
+            navigate("/ChattingPage");
         }
 
     };
