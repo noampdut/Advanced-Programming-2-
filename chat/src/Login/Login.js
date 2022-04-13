@@ -5,6 +5,13 @@ import { userIdentification } from '../DataBase/dataBase';
 
 
 function Login(){
+
+    const onsubmit = e => {
+        if (userIdentification(document.getElementById('userName').value ,document.getElementById('exampleInputPassword1').value)){
+            navigate("/MessagesBox");
+        }
+
+    };
     
     const navigate = useNavigate();
     return(
@@ -21,7 +28,7 @@ function Login(){
             <label htmlFor="exampleInputPassword1" className="form-label">Password:</label>
             <input type="password" className="form-control"  id="exampleInputPassword1"></input>
         </div>
-        <button type="button" className="btn btn-light" onClick={() =>userIdentification(document.getElementById('userName').value ,document.getElementById('exampleInputPassword1').value)} >login </button>
+        <button type="button" className="btn btn-light" onClick={onsubmit} >login </button>
     </form> 
     <span> Not registered?
         <button type="button" className="btn btn-link" onClick={() => navigate("/Register")} >click here </button>

@@ -2,6 +2,8 @@ import './register.css';
 import { useState } from "react";
 import validationPassword from './validation';
 import {insertNewUser,isExists} from '../DataBase/dataBase';
+import {useNavigate} from 'react-router-dom';
+
 
 const Register = () => {
     const [formData, setFormData] = useState({userName: '', nickName: '', 
@@ -18,10 +20,10 @@ const Register = () => {
         if (checkForm(userName, nickName, picture, password, validationPassword))
         {
             insertNewUser(userName, nickName, picture, password);
-            this.props.history.push('/Login');
+            navigate("/Login");
         }
     };
-
+    const navigate = useNavigate();
  return (
      <div className="register">
          <div className="title">

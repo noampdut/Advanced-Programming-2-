@@ -4,9 +4,10 @@ import StartScreen from "./Chatroom/StartScreen/StartScreen";
 function ChattingPage(){
 
     return(
-    <div>
-        <ChatScreen />
-    </div>
+        <div className="title">
+            chatting page
+        </div>
+
     );
 }
 
