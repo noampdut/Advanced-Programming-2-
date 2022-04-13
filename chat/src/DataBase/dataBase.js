@@ -1,5 +1,3 @@
-import ReactDOM from 'react-dom/client';
-import React from 'react';
 import { addUserToActiveList } from '../ChattingPage/Contacts/MessagesBox';
 
 const usersList=[{
