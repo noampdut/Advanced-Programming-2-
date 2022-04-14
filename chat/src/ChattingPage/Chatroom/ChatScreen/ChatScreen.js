@@ -35,7 +35,7 @@ function ChatScreen() {
     const addMessage = text => {
         text = text.trim();
         if (text != ""){
-            setMessage([...messages, {'text':text, 'getM':false}]);
+            setMessage([...messages, {'type':"text", 'data':text, 'getM':false, 'time':""}]);
         }
     };
 
@@ -68,7 +68,7 @@ function ChatScreen() {
     const addImg = (file) => {
         var fr = new FileReader();
         fr.onload = function () {
-            document.getElementById("img").src = fr.result;
+            setMessage([...messages, {'type': "pic", 'data':fr.result, 'getM':false, 'time':""}]);
         }
         fr.readAsDataURL(file);
     };
@@ -109,11 +109,10 @@ function ChatScreen() {
 
             <div className='chatBackground'>
                 <CurrentUserChat user={currentContact[0].nickName} picture={currentContact[0].picture} />
-                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage} />
+                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage} addImg={addImg} />
                 <ChatScrollBar>
                     <Messages MessagesList={messages} />
                 </ChatScrollBar>
-                <img id="img"></img>
                 <PopUp value={buttonPopUp} setValue={setButtonPopUp} addMessage={addMessage} addImg={addImg} />
                 <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} />
         <VoicePopUp value={recordPopUp} setValue={setRecordPopUp}/>
