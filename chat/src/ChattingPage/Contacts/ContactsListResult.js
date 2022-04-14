@@ -1,8 +1,8 @@
 import ContactInList from "./ContactInList";
 
-function ContactsListResult({ contactsList }) {
+function ContactsListResult({ contactsList, changeContact }) {
     const contactList = contactsList.map((data, key) => {
-        return <ContactInList {...data} />
+        return <ContactInList {...data} changeContact={changeContact} />
     });
 
     return (
