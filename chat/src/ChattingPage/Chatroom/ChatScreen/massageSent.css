@@ -1,5 +1,5 @@
 .mySent{
     word-break: break-all;
-    position: relative;
-    left: 50%;
+    padding: 0px;
+    margin-left: auto;
 }

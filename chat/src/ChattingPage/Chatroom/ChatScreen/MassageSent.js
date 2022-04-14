@@ -7,6 +7,7 @@ function MassageSent({text}){
             <div className="media-body">
                 <div className="bg-secondary rounded py-2 px-3">
                     <p className="text-small mb-0 text-white">{text}
+                         <img src={text} />
                     </p>
                 </div>
             </div>

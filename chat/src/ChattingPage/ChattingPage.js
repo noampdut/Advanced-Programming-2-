@@ -1,15 +1,13 @@
 import ChatScreen from "./Chatroom/ChatScreen/ChatScreen";
-import StartScreen from "./Chatroom/StartScreen/StartScreen";
-import MessagesBox from "./Contacts/MessagesBox";
+import'./ChattingPage.css';
 
 function ChattingPage(){
 
     return(
-        <div>
-            <ChatScreen />
-            
+        <div className="ChattingPage">
+            <ChatScreen/>
         </div>
-        
+
     );
 }
 

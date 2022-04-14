@@ -1,8 +1,24 @@
 import './popUp.css';
-import React from 'react'; 
-
+import React, { useState } from 'react'; 
 
 function PopUp(props){
+
+    const [file, setFile] = useState();
+    const onClick = e => {
+        e.preventDefault();
+        props.addImg(file);
+        console.log(file);
+        //props.addMessage(document.getElementById("formFile").value);
+        props.setValue(false)
+    }
+
+    const imgChange = e =>
+    {
+        const files = e.target.files;
+        const file = files[0];
+        setFile(file);
+    }
+
    if(props.value){
        return(
            <div className="btn-light popup">
@@ -12,8 +28,8 @@ function PopUp(props){
                        <br></br>
                        <label htmlFor="formFile" className="form-label">please choose a file</label>
                        <br></br>
-                       <input className="form-control" type="file" id="formFile" />
-                       <button type="button" className="btn btn-outline-secondary">Send</button>
+                       <input className="form-control" type="file" id="formFile" accept='.jpg, .jpeg, .png' onChange={imgChange} />
+                       <button type="button" className="btn btn-outline-secondary" onClick={onClick}>Send</button>
                    </div>
                </div>
            </div>

@@ -44,7 +44,7 @@ const Register = () => {
 
              <div className="input-group mb-3">
                  <input type="file" name="picture" value={picture} id="picture" 
-                 className="form-control" onChange={onChange}/>
+                 className="form-control" accept=".jpg, .jpeg, .png" onChange={onChange}/>
              </div>
 
              <div className="mb-3">

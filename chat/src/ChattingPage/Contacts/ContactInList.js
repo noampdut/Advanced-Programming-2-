@@ -1,9 +1,8 @@
-
-function ContactInList({nickName, time, lastMessage, picture}) {
+function ContactInList({nickName, time, lastMessage, picture, changeContact}) {
 
     return (
 
-        <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+        <button type="button" onClick={() => changeContact(nickName, picture, lastMessage)} className="list-group-item list-group-item-action list-group-item-light rounded-0">
             <div className="media"><img src={picture} alt="user" width="50" className="rounded-circle"></img>
                 <div className="media-body ml-4">
                     <div className="d-flex align-items-center justify-content-between mb-1">
@@ -17,5 +16,7 @@ function ContactInList({nickName, time, lastMessage, picture}) {
     );
 
 }
+
+
 
 export default ContactInList;
