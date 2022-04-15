@@ -7,13 +7,11 @@ function PopUp(props){
     const onClick = e => {
         e.preventDefault();
         props.addImg(file);
-        console.log(file);
-        //props.addMessage(document.getElementById("formFile").value);
+        //console.log(file);
         props.setValue(false)
     }
 
-    const imgChange = e =>
-    {
+    const imgChange = e =>{
         const files = e.target.files;
         const file = files[0];
         setFile(file);

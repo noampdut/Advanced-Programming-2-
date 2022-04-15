@@ -73,6 +73,14 @@ function ChatScreen() {
         fr.readAsDataURL(file);
     };
 
+    const addVideo = (file) => {
+        var fr = new FileReader();
+        fr.onload = function () {
+            setMessage([...messages, {'type': "video", 'data':fr.result, 'getM':false, 'time':""}]);
+        }
+        fr.readAsDataURL(file);
+    }
+
     return (
         
             <div className="container py-5 px-4">
@@ -109,12 +117,12 @@ function ChatScreen() {
 
             <div className='chatBackground'>
                 <CurrentUserChat user={currentContact[0].nickName} picture={currentContact[0].picture} />
-                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage} addImg={addImg} />
+                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage}/>
                 <ChatScrollBar>
                     <Messages MessagesList={messages} />
                 </ChatScrollBar>
-                <PopUp value={buttonPopUp} setValue={setButtonPopUp} addMessage={addMessage} addImg={addImg} />
-                <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} />
+                <PopUp value={buttonPopUp} setValue={setButtonPopUp} addImg={addImg} />
+                <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo}/>
         <VoicePopUp value={recordPopUp} setValue={setRecordPopUp}/>
             </div>
             </div>

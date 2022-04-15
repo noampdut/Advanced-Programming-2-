@@ -1,6 +1,7 @@
 import MassageGet from "./MassageGet";
 import MassageSent from "./MassageSent";
 import PicSend from "./PicSend";
+import VideoSend from "./VideoSend";
 
 function messageG(str){
     return(
@@ -24,6 +25,8 @@ function ShowMessages(messages){
                     return messageS(message.data.toString());
                 } if (message.type.toString() == "pic"){
                     return PicSend(message.data);
+                } if (message.type.toString() == "video"){
+                    return VideoSend(message.data);
                 }
             }
            

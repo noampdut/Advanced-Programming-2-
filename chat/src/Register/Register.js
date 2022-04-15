@@ -59,7 +59,6 @@ const Register = () => {
              </div>
              <button type="button" onClick={onSubmit} className="btn btn-light" >Register</button>
          </form>
-
      </div>  
  );
 

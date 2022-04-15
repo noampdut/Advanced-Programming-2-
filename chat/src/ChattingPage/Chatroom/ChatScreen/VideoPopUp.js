@@ -1,8 +1,23 @@
 import './popUp.css';
 import React from 'react'; 
+import { useState } from 'react';
 
 
 function VideoPopUp(props){
+    const [file, setFile] = useState();
+    const onClick = e => {
+        e.preventDefault();
+        props.addVideo(file);
+        console.log(file);
+        props.setValue(false)
+    }
+
+    const videoChange = e =>{
+        const files = e.target.files;
+        const file = files[0];
+        setFile(file);
+    }
+
    if(props.value){
        return(
            <div className="btn-light popup">
@@ -12,8 +27,8 @@ function VideoPopUp(props){
                        <br></br>
                        <label htmlFor="formFile" className="form-label">please choose a file</label>
                        <br></br>
-                       <input className="form-control" type="file" id="formFile" accept='video/mp4,video/x-m4v,video/*'/>
-                       <button type="button" className="btn btn-outline-secondary">Send</button>
+                       <input className="form-control" type="file" id="formFile" accept='video/mp4,video/x-m4v,video/*' onChange={videoChange}/>
+                       <button type="button" className="btn btn-outline-secondary" onClick={onClick}>Send</button>
                    </div>
                </div>
            </div>
