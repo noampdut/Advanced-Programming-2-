@@ -2,8 +2,8 @@ import './popUp.css';
 import React, { useState } from 'react'; 
 
 function PopUp(props){
-
     const [file, setFile] = useState();
+    
     const onClick = e => {
         e.preventDefault();
         props.addImg(file);

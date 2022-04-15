@@ -3,8 +3,7 @@ import CurrentUserChat from './CurrentUserChat';
 import Input from './Input';
 import PopUp from './PopUp';
 import VoicePopUp from './VoicePopUp';
-import { useState } from 'react';
-import React from 'react';
+import { useState, useEffect, React } from 'react';
 import Messages from '../../Messages';
 import AddContactButton from '../../Contacts/AddContactButton';
 import ContactsListResult from '../../Contacts/ContactsListResult';
@@ -13,8 +12,8 @@ import { isInUserList } from '../../../DataBase/dataBase';
 import { IsInContactList } from '../../Contacts/contacts';
 import ChatScrollBar from './ChatScrollBar';
 import VideoPopUp from './VideoPopUp';
-import { useEffect } from 'react';
 import currentContact from '../../Contacts/currentContact';
+import { getPic } from '../../../DataBase/dataBase';
 
 const activeUser = [{ 'userName': '', 'nickName': '', 'picture': '' }];
 
@@ -117,15 +116,16 @@ function ChatScreen() {
 
             <div className='chatBackground'>
                 <CurrentUserChat user={currentContact[0].nickName} picture={currentContact[0].picture} />
-                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage}/>
+                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage} />
                 <ChatScrollBar>
                     <Messages MessagesList={messages} />
                 </ChatScrollBar>
                 <PopUp value={buttonPopUp} setValue={setButtonPopUp} addImg={addImg} />
-                <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo}/>
-        <VoicePopUp value={recordPopUp} setValue={setRecordPopUp}/>
+                <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo} />
+                <VoicePopUp value={recordPopUp} setValue={setRecordPopUp} />
+                <img width={500} height={500} src={getPic("lilach98")} />
             </div>
-            </div>
+        </div>
     );
 }
 

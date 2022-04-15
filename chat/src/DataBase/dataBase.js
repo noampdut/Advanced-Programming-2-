@@ -1,3 +1,4 @@
+import { getSpaceUntilMaxLength } from "@testing-library/user-event/dist/utils";
 import { addUserToActiveList } from "../ChattingPage/Chatroom/ChatScreen/ChatScreen";
 
 var usersList = [{
@@ -51,6 +52,14 @@ function isInUserList(userName) {
     return false;
 }
 
+function getPic(user){
+    for (var i = 0; i < usersList.length; i++) {
+        if (usersList[i].userName == user) {
+            return usersList[i].picture;
+        }
+    }
+}
 
 
-export { insertNewUser, isExists, userIdentification, isInUserList };
+
+export { insertNewUser, isExists, userIdentification, isInUserList, getPic};

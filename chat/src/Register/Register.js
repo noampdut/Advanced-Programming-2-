@@ -12,13 +12,23 @@ const Register = () => {
     const {userName, nickName, picture, password, validationPassword} = formData;
     
     const onChange = e => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        const files = e.target.files;
+        if (files != undefined){
+            const file = files[0];
+            var fr = new FileReader();
+            fr.onload = function () {
+            setFormData({...formData, ['picture']: fr.result});
+        }
+            fr.readAsDataURL(file);
+        }else{
+            setFormData({...formData, [e.target.name]: e.target.value});
+        }
+        
     };
     
     const onSubmit = e => {
         e.preventDefault();
-        if (checkForm(userName, nickName, picture, password, validationPassword))
-        {
+        if (checkForm(userName, nickName, picture, password, validationPassword)){
             insertNewUser(userName, nickName, picture, password);
             navigate("/Login");
         }
@@ -43,7 +53,7 @@ const Register = () => {
              </div>
 
              <div className="input-group mb-3">
-                 <input type="file" name="picture" value={picture} id="picture" 
+                 <input type="file" name="picture" id="picture" 
                  className="form-control" accept=".jpg, .jpeg, .png" onChange={onChange}/>
              </div>
 
