@@ -5,7 +5,7 @@ function VideoSend(video){
         <div className="mb-2 sendPic">
             <div className="media-body">
                 <div className="py-2 px-3">
-                    <video className='piiiic' controls>
+                    <video className='myPic' controls>
                         <source src={video} />
                     </video>
                 </div>

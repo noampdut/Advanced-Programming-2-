@@ -33,6 +33,13 @@ const Register = () => {
             navigate("/Login");
         }
     };
+
+    const handleKeypress = e => {
+        if (e.key === "Enter") {
+            onsubmit(e);
+        }
+    };
+    
     const navigate = useNavigate();
  return (
      <div className="register">
@@ -65,7 +72,7 @@ const Register = () => {
              <div className="mb-3">
                  <label htmlFor="exampleInputPassword1" className="form-label">Confirm Password:</label>
                  <input type="password" name="validationPassword" className="form-control" onChange={onChange}
-                 value={validationPassword} id="confirmPassword"/>
+                 value={validationPassword} id="confirmPassword" onKeyPress={handleKeypress}/>
              </div>
              <button type="button" onClick={onSubmit} className="btn btn-light" >Register</button>
          </form>

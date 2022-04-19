@@ -13,3 +13,20 @@
     position: absolute;
     right: 0%;
 }
+
+.placeRecord{
+    position: relative;
+    top: 40%;
+    left: 0%;
+}
+.pad{
+    margin: 2%;
+}
+.voicePopUp{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 300px;
+    height: 135px;
+    background-color: rgba(255, 255, 255, 0.929);
+}

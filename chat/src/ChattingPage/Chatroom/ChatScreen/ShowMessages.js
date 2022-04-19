@@ -2,6 +2,7 @@ import MassageGet from "./MassageGet";
 import MassageSent from "./MassageSent";
 import PicSend from "./PicSend";
 import VideoSend from "./VideoSend";
+import AudioSend from "./AudioSend";
 
 function messageG(str){
     return(
@@ -27,9 +28,10 @@ function ShowMessages(messages){
                     return PicSend(message.data);
                 } if (message.type.toString() == "video"){
                     return VideoSend(message.data);
+                } if (message.type.toString() == "audio"){
+                    return AudioSend(message.data);
                 }
             }
-           
         });
 }
 

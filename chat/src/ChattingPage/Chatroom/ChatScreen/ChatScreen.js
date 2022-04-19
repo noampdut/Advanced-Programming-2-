@@ -67,7 +67,7 @@ function ChatScreen() {
     const addImg = (file) => {
         var fr = new FileReader();
         fr.onload = function () {
-            setMessage([...messages, {'type': "pic", 'data':fr.result, 'getM':false, 'time':""}]);
+            setMessage([...messages, {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}]);
         }
         fr.readAsDataURL(file);
     };
@@ -75,9 +75,14 @@ function ChatScreen() {
     const addVideo = (file) => {
         var fr = new FileReader();
         fr.onload = function () {
-            setMessage([...messages, {'type': "video", 'data':fr.result, 'getM':false, 'time':""}]);
+            setMessage([...messages, {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}]);
         }
         fr.readAsDataURL(file);
+    }
+
+    const addAudio = (audio) =>{
+        //alert("from ff");
+            setMessage([...messages, {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()}])
     }
 
     return (
@@ -122,7 +127,7 @@ function ChatScreen() {
                 </ChatScrollBar>
                 <PopUp value={buttonPopUp} setValue={setButtonPopUp} addImg={addImg} />
                 <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo} />
-                <VoicePopUp value={recordPopUp} setValue={setRecordPopUp} />
+                <VoicePopUp value={recordPopUp} setValue={setRecordPopUp} addAudio={addAudio}/>
                 <img width={500} height={500} src={getPic("lilach98")} />
             </div>
         </div>
