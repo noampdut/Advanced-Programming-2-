@@ -128,7 +128,6 @@ function ChatScreen() {
                 <PopUp value={buttonPopUp} setValue={setButtonPopUp} addImg={addImg} />
                 <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo} />
                 <VoicePopUp value={recordPopUp} setValue={setRecordPopUp} addAudio={addAudio}/>
-                <img width={500} height={500} src={getPic("lilach98")} />
             </div>
         </div>
     );
