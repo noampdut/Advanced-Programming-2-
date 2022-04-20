@@ -1,11 +1,11 @@
 import ChatScreen from "./Chatroom/ChatScreen/ChatScreen";
-import StartScreen from "./Chatroom/StartScreen/StartScreen";
+import'./ChattingPage.css';
 
 function ChattingPage(){
 
     return(
-        <div className="title">
-            chatting page
+        <div className="ChattingPage">
+            <ChatScreen/>
         </div>
 
     );

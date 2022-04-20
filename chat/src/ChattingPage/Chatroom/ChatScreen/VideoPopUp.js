@@ -1,17 +1,18 @@
 import './popUp.css';
-import React, { useState } from 'react'; 
+import React from 'react'; 
+import { useState } from 'react';
 
-function PopUp(props){
+
+function VideoPopUp(props){
     const [file, setFile] = useState();
-    
     const onClick = e => {
         e.preventDefault();
-        props.addImg(file);
-        //console.log(file);
+        props.addVideo(file);
+        console.log(file);
         props.setValue(false)
     }
 
-    const imgChange = e =>{
+    const videoChange = e =>{
         const files = e.target.files;
         const file = files[0];
         setFile(file);
@@ -26,7 +27,7 @@ function PopUp(props){
                        <br></br>
                        <label htmlFor="formFile" className="form-label">please choose a file</label>
                        <br></br>
-                       <input className="form-control" type="file" id="formFile" accept='.jpg, .jpeg, .png' onChange={imgChange} />
+                       <input className="form-control" type="file" id="formFile" accept='video/mp4,video/x-m4v,video/*' onChange={videoChange}/>
                        <button type="button" className="btn btn-outline-secondary" onClick={onClick}>Send</button>
                    </div>
                </div>
@@ -37,4 +38,4 @@ function PopUp(props){
    return("");
 }
 
-export default PopUp;
+export default VideoPopUp;

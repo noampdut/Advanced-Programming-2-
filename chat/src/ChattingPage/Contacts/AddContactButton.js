@@ -7,7 +7,7 @@ function AddContactButton({ addContact, onchange }) {
 
     return (
         <><span>
-            <button onClick={() => setAddContactButton(true)} ><img width="30" class="rounded-circle" src="2521826.png" /></button>
+            <button onClick={() => setAddContactButton(true)} ><img width="30" className="rounded-circle" src="2521826.png" /></button>
         </span>
             <>
                 <Popup addContact={addContact} onchange={onchange} trigger={addContactButton} setTrigger={setAddContactButton}>

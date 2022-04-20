@@ -1,15 +1,14 @@
-
-function ContactInList({nickName, time, lastMessage, picture}) {
+function ContactInList({nickName, time, lastMessage, picture, changeContact}) {
 
     return (
 
-        <button href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
-            <div class="media"><img src={picture} alt="user" width="50" class="rounded-circle"></img>
-                <div class="media-body ml-4">
-                    <div class="d-flex align-items-center justify-content-between mb-1">
-                        <h6 class="mb-0">{nickName}</h6><small class="small font-weight-bold">{time}</small>
+        <button type="button" onClick={() => changeContact(nickName, picture, lastMessage)} className="list-group-item list-group-item-action list-group-item-light rounded-0">
+            <div className="media"><img src={picture} alt="user" width="50" className="rounded-circle"></img>
+                <div className="media-body ml-4">
+                    <div className="d-flex align-items-center justify-content-between mb-1">
+                        <h6 className="mb-0">{nickName}</h6><small className="small font-weight-bold">{time}</small>
                     </div>
-                    <p class="font-italic text-muted mb-0 text-small">{lastMessage}</p>
+                    <p className="font-italic text-muted mb-0 text-small">{lastMessage}</p>
                 </div>
             </div>
         </button>
@@ -17,5 +16,7 @@ function ContactInList({nickName, time, lastMessage, picture}) {
     );
 
 }
+
+
 
 export default ContactInList;

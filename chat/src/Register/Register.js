@@ -12,17 +12,34 @@ const Register = () => {
     const {userName, nickName, picture, password, validationPassword} = formData;
     
     const onChange = e => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        const files = e.target.files;
+        if (files != undefined){
+            const file = files[0];
+            var fr = new FileReader();
+            fr.onload = function () {
+            setFormData({...formData, ['picture']: fr.result});
+        }
+            fr.readAsDataURL(file);
+        }else{
+            setFormData({...formData, [e.target.name]: e.target.value});
+        }
+        
     };
     
     const onSubmit = e => {
         e.preventDefault();
-        if (checkForm(userName, nickName, picture, password, validationPassword))
-        {
+        if (checkForm(userName, nickName, picture, password, validationPassword)){
             insertNewUser(userName, nickName, picture, password);
             navigate("/Login");
         }
     };
+
+    const handleKeypress = e => {
+        if (e.key === "Enter") {
+            onsubmit(e);
+        }
+    };
+    
     const navigate = useNavigate();
  return (
      <div className="register">
@@ -43,8 +60,8 @@ const Register = () => {
              </div>
 
              <div className="input-group mb-3">
-                 <input type="file" name="picture" value={picture} id="picture" 
-                 className="form-control" onChange={onChange}/>
+                 <input type="file" name="picture" id="picture" 
+                 className="form-control" accept=".jpg, .jpeg, .png" onChange={onChange}/>
              </div>
 
              <div className="mb-3">
@@ -55,11 +72,10 @@ const Register = () => {
              <div className="mb-3">
                  <label htmlFor="exampleInputPassword1" className="form-label">Confirm Password:</label>
                  <input type="password" name="validationPassword" className="form-control" onChange={onChange}
-                 value={validationPassword} id="confirmPassword"/>
+                 value={validationPassword} id="confirmPassword" onKeyPress={handleKeypress}/>
              </div>
              <button type="button" onClick={onSubmit} className="btn btn-light" >Register</button>
          </form>
-
      </div>  
  );
 
