@@ -21,7 +21,7 @@ function ChatScreen({activeUser}) {
     const [recordPopUp, setRecordPopUp] = useState(false);
     const [messages, setMessage] = useState(MessagesList);
     const [startScreen, setStartScreen] = useState(true);
-    const [currentContactState, setCurrentContact] = useState({userName:'', picture:'', lastMessage:''});
+    const [currentContactState, setCurrentContact] = useState({userName:'', picture:''});
     const [contactsList, setContactsList] = useState(contacts);
     const [index, setContactIndex] = useState(0);
 
@@ -30,6 +30,8 @@ function ChatScreen({activeUser}) {
         if (text != ""){
             let contact = contactsList[index];
             let new_message = {'type':"text", 'data':text, 'getM':false, 'time':new Date()};
+            contact.lastMessage=text;
+            //contact.time=new Date();
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message]);
