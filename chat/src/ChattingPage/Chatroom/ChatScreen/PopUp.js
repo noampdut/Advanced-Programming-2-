@@ -19,7 +19,7 @@ function PopUp(props){
 
    if(props.value){
        return(
-           <div className="btn-light popup">
+           <div className="popup">
                <div className="popup-inner">
                    <button type="button" className="btn-close myClose" aria-label="Close" onClick={()=>props.setValue(false)}></button>
                    <div className="mb-3">

@@ -45,7 +45,7 @@ function VoicePopUp(props){
 
     if(props.value){
         return(
-            <div className="btn-light voicePopUp">
+            <div className="voicePopUp">
                 <button type="button" className="btn-close myClose" aria-label="Close" onClick={() => props.setValue(false)}></button>
                 <div className="mb-3 placeRecord" id="record_div">
                     <button type="button" className="btn btn-outline-danger pad" onClick={dismiss}>Dismiss record</button>

@@ -4,7 +4,6 @@ import AddContactButton from '../../Contacts/AddContactButton';
 import contacts from '../../Contacts/contacts';
 import { isInUserList } from '../../../DataBase/dataBase';
 import { IsInContactList } from '../../Contacts/contacts';
-import currentContact from '../../Contacts/currentContact';
 import { getPic } from '../../../DataBase/dataBase';
 import MessagesBox from '../../Contacts/MessagesBox';
 import MessageScrollBar from './MessageScrollBar';
@@ -101,31 +100,28 @@ function ChatScreen({activeUser}) {
     }
 
     return (
-        <div className="container py-5 px-4">
-            <div className="row rounded-lg overflow-hidden shadow">
-                <div className="col-5 px-0">
-                    <div className="bg-white">
-                        <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
-                            <div className="media"><img width="60" height="60" src={activeUser.picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser.userName}!
-                                <div className="media-body ml-4">
-                                    <div className="d-flex align-items-center justify-content-between mb-1">
-                                    </div>
-                                </div>
+        <div className="py-5 px-4 ">
+            <div className="px-0 mylist">
+                <a className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div className="media"><img width="60" height="60" src={activeUser.picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser.userName}!
+                        <div className="media-body ml-4">
+                            <div className="d-flex align-items-center justify-content-between mb-1">
                             </div>
-                        </button>
-                        <div className="bg-gray px-4 py-2 bg-light">
-                            <p className="h5 mb-0 py-1">Contacts &nbsp;&nbsp;&nbsp;&nbsp;
-                                <span>
-                                    <AddContactButton addContact={addContact} onchange={onchange} />
-                                </span>
-                            </p>
                         </div>
-                        <MessageScrollBar>
-                            <MessagesBox contactsList={contactsList} changeContact={changeContact}/>
-                        </MessageScrollBar>
                     </div>
+                </a>
+                <div className="bg-gray px-4 py-2 bg-light">
+                    <p className="h5 mb-0 py-1">Contacts &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>
+                            <AddContactButton addContact={addContact} onchange={onchange} />
+                        </span>
+                    </p>
                 </div>
+                <MessageScrollBar>
+                    <MessagesBox contactsList={contactsList} changeContact={changeContact} />
+                </MessageScrollBar>
             </div>
+           
             <div className='chatBackground'>
                 <View startScreen={startScreen} setButtonPopUp={setButtonPopUp} setVideoPopUp={setVideoPopUp} setRecordPopUp={setRecordPopUp} messages={messages}
                  buttonPopUp={buttonPopUp} 
