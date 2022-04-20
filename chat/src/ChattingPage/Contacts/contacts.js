@@ -14,4 +14,4 @@ function IsInContactList(userName) {
 
 
   export default contacts;
-  export {IsInContactList};
+  export {IsInContactList};                               

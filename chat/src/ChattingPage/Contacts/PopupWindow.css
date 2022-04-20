@@ -11,7 +11,7 @@
     border-radius: 8px;
     color: black;
     font-style: italic;
-    background-color: transparent;
+    background-color: pink;
     font-family: 'system-ui';
     box-shadow: 5px 5px 10px rgb(0 0 0 / 30%);
     background-position: center;
@@ -28,7 +28,7 @@
 
 .form-controlPopUp {
     display: block;
-    width: 80%;
+    width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
     font-weight: 400;

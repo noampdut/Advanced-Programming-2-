@@ -29,7 +29,7 @@ function Popup(props) {
             <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Contact`s Name</label>
-                    <input type="text" id="nickName"  name="nickName" onChange={onChange} className="controlPopUp"></input>
+                    <input type="text" id="nickName"  name="nickName" onChange={onChange} className="form-controlPopUp"></input>
                 </div>
                 <button type="button" className="btn btn-light" onClick={onSubmit} >Add </button>&nbsp;&nbsp;
                 <button type="button" className="btn btn-light" onClick={() => props.setTrigger(false)}>close</button>
