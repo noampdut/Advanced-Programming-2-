@@ -68,6 +68,7 @@ function ChatScreen({activeUser}) {
             let contact = contactsList[index];
             let new_message = {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}
             contact.time=new_message.time.toLocaleString();
+            contact.lastMessage="Image";
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message]);
@@ -81,6 +82,7 @@ function ChatScreen({activeUser}) {
             let contact = contactsList[index];
             let new_message = {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}
             contact.time=new_message.time.toLocaleString();
+            contact.lastMessage="Video";
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message])
@@ -92,6 +94,7 @@ function ChatScreen({activeUser}) {
         let contact = contactsList[index];
         let new_message = {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()};
         contact.time=new_message.time.toLocaleString();
+        contact.lastMessage="Audio";
         contact.messages.push(new_message);
         setContactsList(contactsList);
         setMessage([...messages, new_message]);
