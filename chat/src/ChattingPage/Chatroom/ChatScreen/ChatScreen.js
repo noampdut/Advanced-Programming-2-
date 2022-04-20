@@ -9,7 +9,6 @@ import { getPic } from '../../../DataBase/dataBase';
 import MessagesBox from '../../Contacts/MessagesBox';
 import MessageScrollBar from './MessageScrollBar';
 import View from './View';
-//const activeUser = [{ 'userName': '', 'nickName': '', 'picture': '' }];
 
 
 function ChatScreen({activeUser}) {
@@ -31,7 +30,7 @@ function ChatScreen({activeUser}) {
             let contact = contactsList[index];
             let new_message = {'type':"text", 'data':text, 'getM':false, 'time':new Date()};
             contact.lastMessage=text;
-            //contact.time=new Date();
+            contact.time=new_message.time.toLocaleString();
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message]);
@@ -68,6 +67,7 @@ function ChatScreen({activeUser}) {
         fr.onload = function () {
             let contact = contactsList[index];
             let new_message = {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}
+            contact.time=new_message.time.toLocaleString();
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message]);
@@ -80,6 +80,7 @@ function ChatScreen({activeUser}) {
         fr.onload = function () {
             let contact = contactsList[index];
             let new_message = {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}
+            contact.time=new_message.time.toLocaleString();
             contact.messages.push(new_message);
             setContactsList(contactsList);
             setMessage([...messages, new_message])
@@ -90,6 +91,7 @@ function ChatScreen({activeUser}) {
     const addAudio = (audio) =>{
         let contact = contactsList[index];
         let new_message = {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()};
+        contact.time=new_message.time.toLocaleString();
         contact.messages.push(new_message);
         setContactsList(contactsList);
         setMessage([...messages, new_message]);

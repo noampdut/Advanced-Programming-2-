@@ -1,5 +1,7 @@
+const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
 function ContactInList({userName, time, lastMessage, picture, changeContact}) {
-    
+    //var timeSTR=time.toISOString()
     return (
         <button type="button" onClick={() => changeContact(userName, picture, lastMessage)} className="list-group-item list-group-item-action list-group-item-light rounded-0">
             <div className="media"><img src={picture} alt="user" height="50" width="50" className="rounded-circle"></img>
