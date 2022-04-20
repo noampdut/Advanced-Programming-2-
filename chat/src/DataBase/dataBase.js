@@ -2,12 +2,39 @@
 var usersList = [{
     'userName': 'noampdut',
     'nickName': 'noamit',
-    'picture': 'profile.jpg',
+    'picture': 'noampdut.jpg',
     'password': 'n123456'
 }, {
     'userName': 'lilach',
     'nickName': 'lilachit',
     'picture': 'poodle.jpg',
+    'password': 'l123456'
+},{
+    'userName': 'Luli',
+    'nickName': 'Luli',
+    'picture': 'luli.jpeg',
+    'password': 'l123456'
+
+},{
+    'userName': 'Oscar',
+    'nickName': 'Oscar',
+    'picture': 'User-Profile.jpg',
+    'password': 'l123456'
+
+},{
+    'userName': 'Dani',
+    'nickName': 'Dani',
+    'picture': 'Profile.jpg',
+    'password': 'l123456'
+},{
+    'userName': 'Gal Gadot',
+    'nickName': 'Gal Gadot',
+    'picture': 'galGadot.jpg',
+    'password': 'l123456'
+}, {
+    'userName': 'Ronaldo',
+    'nickName': 'Ronaldot',
+    'picture': 'ronaldo.jpg',
     'password': 'l123456'
 }];
 

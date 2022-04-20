@@ -28,12 +28,16 @@ function ChatScreen({activeUser}) {
     const addMessage = text => {
         text = text.trim();
         if (text != ""){
-            setMessage([...messages, {'type':"text", 'data':text, 'getM':false, 'time':new Date()}]);
-        }
+            let contact = contactsList[index];
+            let new_message = {'type':"text", 'data':text, 'getM':false, 'time':new Date()};
+            contact.messages.push(new_message);
+            setContactsList(contactsList);
+            setMessage([...messages, new_message]);
+        }    
     };
 
     const addContact = function (user) {
-        if(isInUserList(user) && !IsInContactList(user)) {
+        if(isInUserList(user) && !IsInContactList(user, contactsList)) {
             if(activeUser.userName == user) { 
                 alert(user +", You can not create a new conversition with yourself.");
                  return;
@@ -43,8 +47,6 @@ function ChatScreen({activeUser}) {
     }
     // MB
     const onchange = function (e) {
-        // const newContact = [{ userName: e.target.value, lastMessage: '', time: '', picture: 'luli.jpeg' }];
-        // setContactsList([...contactsList, ...newContact]);
     }
 
     const changeContact = function (user, picture, lastMessage) {
@@ -59,29 +61,36 @@ function ChatScreen({activeUser}) {
         setCurrentContact({userName: user, picture: picture, lastMessage: lastMessage});
         setMessage([...contactsList[i].messages]);
     }
-    const addImg = (file, user) => {
+    const addImg = (file) => {
         var fr = new FileReader();
         fr.onload = function () {
             let contact = contactsList[index];
             let new_message = {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}
             contact.messages.push(new_message);
             setContactsList(contactsList);
-            setMessage([...messages, new_message])
-            //setMessage(contacts[file_contact_index].messages.push());
+            setMessage([...messages, new_message]);
         }
         fr.readAsDataURL(file);
     };
 
-    const addVideo = (file, user) => {
+    const addVideo = (file) => {
         var fr = new FileReader();
         fr.onload = function () {
-            setMessage([...messages, {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}]);
+            let contact = contactsList[index];
+            let new_message = {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}
+            contact.messages.push(new_message);
+            setContactsList(contactsList);
+            setMessage([...messages, new_message])
         }
         fr.readAsDataURL(file);
     }
 
-    const addAudio = (audio, user) =>{
-        setMessage([...messages, {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()}])
+    const addAudio = (audio) =>{
+        let contact = contactsList[index];
+        let new_message = {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()};
+        contact.messages.push(new_message);
+        setContactsList(contactsList);
+        setMessage([...messages, new_message]);
     }
 
     return (
@@ -90,7 +99,7 @@ function ChatScreen({activeUser}) {
                 <div className="col-5 px-0">
                     <div className="bg-white">
                         <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
-                            <div className="media"><img width="60" height="30" src={activeUser.picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser.userName}!
+                            <div className="media"><img width="60" height="60" src={activeUser.picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser.userName}!
                                 <div className="media-body ml-4">
                                     <div className="d-flex align-items-center justify-content-between mb-1">
                                     </div>
