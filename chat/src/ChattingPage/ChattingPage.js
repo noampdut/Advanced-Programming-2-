@@ -1,11 +1,11 @@
 import ChatScreen from "./Chatroom/ChatScreen/ChatScreen";
 import'./ChattingPage.css';
 
-function ChattingPage(){
+function ChattingPage({activeUser}){
 
     return(
         <div className="ChattingPage">
-            <ChatScreen/>
+            <ChatScreen activeUser={activeUser}/>
         </div>
 
     );

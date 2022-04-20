@@ -8,7 +8,6 @@ import ShowMessages from "../ChatScreen/ShowMessages";
 import { useEffect } from "react";
 
 
-
 function View (props) {
 
     useEffect(() =>{
@@ -27,9 +26,9 @@ function View (props) {
              <ChatScrollBar>
                  <ShowMessages messages={props.messages} />
              </ChatScrollBar>
-             <PopUp value={props.buttonPopUp} setValue={props.setButtonPopUp} addImg={props.addImg} />
-             <VideoPopUp value={props.videoPopUp} setValue={props.setVideoPopUp} addVideo={props.addVideo} />
-             <VoicePopUp value={props.recordPopUp} setValue={props.setRecordPopUp} addAudio={props.addAudio}/>
+             <PopUp value={props.buttonPopUp} setValue={props.setButtonPopUp} addImg={props.addImg} user={props.currentContact} />
+             <VideoPopUp value={props.videoPopUp} setValue={props.setVideoPopUp} addVideo={props.addVideo} user={props.currentContact}/>
+             <VoicePopUp value={props.recordPopUp} setValue={props.setRecordPopUp} addAudio={props.addAudio} user={props.currentContact}/>
         </div> 
         );
     

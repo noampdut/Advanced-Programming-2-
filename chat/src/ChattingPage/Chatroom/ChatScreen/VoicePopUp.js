@@ -21,7 +21,7 @@ function VoicePopUp(props){
                  let blob=new Blob(chunck);
                  let audio_url=URL.createObjectURL(blob);
                  mediaRecorder.stream.getAudioTracks().forEach(track => track.stop());
-                 props.addAudio(audio_url);
+                 props.addAudio(audio_url, props.user);
                  };
  
             })
@@ -33,7 +33,6 @@ function VoicePopUp(props){
        }
    }
 
-
    const dismiss =()=>{
         if(buttonText == "Stop and send") {
             setButtonText("Record")
@@ -43,8 +42,6 @@ function VoicePopUp(props){
             mediaRecorder.stop()
         }
    }
-
-
 
     if(props.value){
         return(

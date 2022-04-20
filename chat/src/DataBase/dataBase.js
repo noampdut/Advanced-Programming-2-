@@ -1,5 +1,3 @@
-import { addUserToActiveList } from "../ChattingPage/Chatroom/ChatScreen/ChatScreen";
-
 
 var usersList = [{
     'userName': 'noampdut',
@@ -31,11 +29,21 @@ function isExists(username) {
     return false;
 }
 
+function getUserByUserName(user)
+{
+    for (var i = 0; i < usersList.length; i++) {
+        if (usersList[i].userName == user) {
+            return { 'userName': usersList[i].userName, 'nickName': usersList[i].nickName, 'picture': usersList[i].picture };
+        }
+    }
+
+    return {}
+}
+
 function userIdentification(user, Password) {
     for (var i = 0; i < usersList.length; i++) {
         if (usersList[i].userName == user) {
             if (usersList[i].password == Password) {
-                addUserToActiveList(usersList[i].userName, usersList[i].nickName, usersList[i].picture);
                 return true;
             }
             alert("Wrong password");
@@ -66,4 +74,4 @@ function getPic(user){
 
 
 
-export { insertNewUser, isExists, userIdentification, isInUserList, getPic};
+export { insertNewUser, isExists, userIdentification, isInUserList, getPic, getUserByUserName};

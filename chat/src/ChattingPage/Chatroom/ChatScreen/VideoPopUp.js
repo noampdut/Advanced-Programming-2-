@@ -7,7 +7,7 @@ function VideoPopUp(props){
     const [file, setFile] = useState();
     const onClick = e => {
         e.preventDefault();
-        props.addVideo(file);
+        props.addVideo(file, props.user);
         console.log(file);
         props.setValue(false)
     }

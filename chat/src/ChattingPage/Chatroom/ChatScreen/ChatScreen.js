@@ -1,5 +1,5 @@
 import './chatScreen.css';
-import { useState, useEffect, React } from 'react';
+import { useState, React } from 'react';
 import AddContactButton from '../../Contacts/AddContactButton';
 import contacts from '../../Contacts/contacts';
 import { isInUserList } from '../../../DataBase/dataBase';
@@ -9,10 +9,10 @@ import { getPic } from '../../../DataBase/dataBase';
 import MessagesBox from '../../Contacts/MessagesBox';
 import MessageScrollBar from './MessageScrollBar';
 import View from './View';
-const activeUser = [{ 'userName': '', 'nickName': '', 'picture': '' }];
+//const activeUser = [{ 'userName': '', 'nickName': '', 'picture': '' }];
 
 
-function ChatScreen() {
+function ChatScreen({activeUser}) {
     const MessagesList = [{'type':"text", 'data':"Hello!", 'getM':true, 'time':""}, 
                         {'type':"text", 'data':"Hii, how are you?", 'getM':false, 'time':""},
                         {'type':"text", 'data':"Great!", 'getM':true, 'time':""}]
@@ -21,53 +21,58 @@ function ChatScreen() {
     const [recordPopUp, setRecordPopUp] = useState(false);
     const [messages, setMessage] = useState(MessagesList);
     const [startScreen, setStartScreen] = useState(true);
-    const [currentContact1, setCurrentContact] = useState({'userName': '', 'picture': '', 'lastMessage': ''});
-
-
-    // state from MB
+    const [currentContactState, setCurrentContact] = useState({userName:'', picture:'', lastMessage:''});
     const [contactsList, setContactsList] = useState(contacts);
+    const [index, setContactIndex] = useState(0);
 
     const addMessage = text => {
         text = text.trim();
         if (text != ""){
-            setMessage([...messages, {'type':"text", 'data':text, 'getM':false, 'time':""}]);
+            setMessage([...messages, {'type':"text", 'data':text, 'getM':false, 'time':new Date()}]);
         }
     };
 
-    
-
-    // MB
     const addContact = function (user) {
         if(isInUserList(user) && !IsInContactList(user)) {
-            if(activeUser[1].userName == user) { 
+            if(activeUser.userName == user) { 
                 alert(user +", You can not create a new conversition with yourself.");
                  return;
             }
-        setContactsList(contacts.unshift({ userName: user, lastMessage: '', time: '', picture: getPic(user)}));
+            setContactsList([{ userName: user, lastMessage: '', time: '', picture: getPic(user), messages: []}, ...contactsList]);
         }
     }
     // MB
     const onchange = function (e) {
-        const newContact = [{ userName: e.target.value, lastMessage: '', time: '', picture: 'luli.jpeg' }];
-        setContactsList([...contactsList, ...newContact]);
+        // const newContact = [{ userName: e.target.value, lastMessage: '', time: '', picture: 'luli.jpeg' }];
+        // setContactsList([...contactsList, ...newContact]);
     }
 
     const changeContact = function (user, picture, lastMessage) {
-        currentContact.unshift({userName: user, picture: picture, lastMessage: lastMessage});
-        //startScreen = false;
+        let i=0;
+        for(; i<contactsList.length; i++){
+            if(contactsList[i].userName == user){
+                setContactIndex(i);
+                break;
+            }
+        }
         setStartScreen(false);
-        setCurrentContact(currentContact.unshift({userName: user, picture: picture, lastMessage: lastMessage}));
+        setCurrentContact({userName: user, picture: picture, lastMessage: lastMessage});
+        setMessage([...contactsList[i].messages]);
     }
-
-    const addImg = (file) => {
+    const addImg = (file, user) => {
         var fr = new FileReader();
         fr.onload = function () {
-            setMessage([...messages, {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}]);
+            let contact = contactsList[index];
+            let new_message = {'type': "pic", 'data':fr.result, 'getM':false, 'time':new Date()}
+            contact.messages.push(new_message);
+            setContactsList(contactsList);
+            setMessage([...messages, new_message])
+            //setMessage(contacts[file_contact_index].messages.push());
         }
         fr.readAsDataURL(file);
     };
 
-    const addVideo = (file) => {
+    const addVideo = (file, user) => {
         var fr = new FileReader();
         fr.onload = function () {
             setMessage([...messages, {'type': "video", 'data':fr.result, 'getM':false, 'time':new Date()}]);
@@ -75,9 +80,8 @@ function ChatScreen() {
         fr.readAsDataURL(file);
     }
 
-    const addAudio = (audio) =>{
-        //alert("from ff");
-            setMessage([...messages, {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()}])
+    const addAudio = (audio, user) =>{
+        setMessage([...messages, {'type': "audio", 'data':audio, 'getM':false, 'time':new Date()}])
     }
 
     return (
@@ -86,7 +90,7 @@ function ChatScreen() {
                 <div className="col-5 px-0">
                     <div className="bg-white">
                         <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
-                            <div className="media"><img width="60" height="30" src={activeUser[1].picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser[1].userName}!
+                            <div className="media"><img width="60" height="30" src={activeUser.picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser.userName}!
                                 <div className="media-body ml-4">
                                     <div className="d-flex align-items-center justify-content-between mb-1">
                                     </div>
@@ -101,7 +105,7 @@ function ChatScreen() {
                             </p>
                         </div>
                         <MessageScrollBar>
-                            <MessagesBox contactsList={contacts} changeContact={changeContact}/>
+                            <MessagesBox contactsList={contactsList} changeContact={changeContact}/>
                         </MessageScrollBar>
                     </div>
                 </div>
@@ -114,17 +118,16 @@ function ChatScreen() {
                  addAudio={addAudio}
                  addVideo={addVideo}
                  addImg={addImg}
-                 currentContact={currentContact[0].userName}
-                 currentPicture={currentContact[0].picture}
+                 currentContact={currentContactState.userName}
+                 currentPicture={currentContactState.picture}
                  recordPopUp={recordPopUp}/>
             </div>
         </div>
     );
 }
 
-function addUserToActiveList(userName, nickName, picture) {
-
-    activeUser.push({ 'userName': userName, 'nickName': nickName, 'picture': picture });
-}
+// function addUserToActiveList(userName, nickName, picture) {
+//     setCurrentContact([...currentContactState, { 'userName': userName, 'nickName': nickName, 'picture': picture }]);
+// }
 export default ChatScreen;
-export { addUserToActiveList};
+//export { addUserToActiveList};

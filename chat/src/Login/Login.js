@@ -1,12 +1,14 @@
 import './login.css';
 import {useNavigate} from 'react-router-dom';
-import { userIdentification } from '../DataBase/dataBase';
+import { userIdentification, getUserByUserName } from '../DataBase/dataBase';
 
 
-function Login(){
+function Login({setActiveUser}){
 
     const onsubmit = e => {
-        if (userIdentification(document.getElementById('userName').value ,document.getElementById('exampleInputPassword1').value)){
+        let user = document.getElementById('userName').value
+        if (userIdentification(user ,document.getElementById('exampleInputPassword1').value)){
+            setActiveUser(getUserByUserName(user))
             navigate("/ChattingPage");
         }
     };

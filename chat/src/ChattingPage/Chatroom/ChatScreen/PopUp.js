@@ -6,7 +6,7 @@ function PopUp(props){
     
     const onClick = e => {
         e.preventDefault();
-        props.addImg(file);
+        props.addImg(file, props.user);
         //console.log(file);
         props.setValue(false)
     }

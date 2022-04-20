@@ -1,2 +1,2 @@
-const currentContact = [{'userName':'', 'picture':'', 'lastMessage':''}];
+const currentContact = [{userName:'', picture:'', lastMessage:''}];
 export default currentContact;
