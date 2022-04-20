@@ -1,21 +1,16 @@
 import './chatScreen.css';
-import CurrentUserChat from './CurrentUserChat';
-import Input from './Input';
-import PopUp from './PopUp';
-import VoicePopUp from './VoicePopUp';
 import { useState, useEffect, React } from 'react';
-import Messages from '../../Messages';
 import AddContactButton from '../../Contacts/AddContactButton';
-import ContactsListResult from '../../Contacts/ContactsListResult';
 import contacts from '../../Contacts/contacts';
 import { isInUserList } from '../../../DataBase/dataBase';
 import { IsInContactList } from '../../Contacts/contacts';
-import ChatScrollBar from './ChatScrollBar';
-import VideoPopUp from './VideoPopUp';
 import currentContact from '../../Contacts/currentContact';
 import { getPic } from '../../../DataBase/dataBase';
-
+import MessagesBox from '../../Contacts/MessagesBox';
+import MessageScrollBar from './MessageScrollBar';
+import View from './View';
 const activeUser = [{ 'userName': '', 'nickName': '', 'picture': '' }];
+
 
 function ChatScreen() {
     const MessagesList = [{'type':"text", 'data':"Hello!", 'getM':true, 'time':""}, 
@@ -25,7 +20,8 @@ function ChatScreen() {
     const [videoPopUp, setVideoPopUp] = useState(false);
     const [recordPopUp, setRecordPopUp] = useState(false);
     const [messages, setMessage] = useState(MessagesList);
-    const [currentContact1, setCurrentContact] = useState({'nickName': '', 'picture': '', 'lastMessage': ''});
+    const [startScreen, setStartScreen] = useState(true);
+    const [currentContact1, setCurrentContact] = useState({'userName': '', 'picture': '', 'lastMessage': ''});
 
 
     // state from MB
@@ -38,30 +34,29 @@ function ChatScreen() {
         }
     };
 
-    useEffect(() =>{
-        var scrool = document.getElementById("chatScroll");
-        scrool.scrollTop = scrool.scrollHeight - scrool.clientHeight;
-    });
+    
 
     // MB
-    const addContact = function (nickname) {
-        if(isInUserList(nickname) && !IsInContactList(nickname)) {
-            if(activeUser[1].userName == nickname) { 
-                alert(nickname +", You can not create a new conversition with yourself.");
+    const addContact = function (user) {
+        if(isInUserList(user) && !IsInContactList(user)) {
+            if(activeUser[1].userName == user) { 
+                alert(user +", You can not create a new conversition with yourself.");
                  return;
-                }
-        setContactsList(contacts.unshift({ nickName: nickname, lastMessage: '', time: '', picture: 'luli.jpeg' }));
+            }
+        setContactsList(contacts.unshift({ userName: user, lastMessage: '', time: '', picture: getPic(user)}));
         }
     }
     // MB
     const onchange = function (e) {
-        const newContact = [{ nickName: e.target.value, lastMessage: '', time: '', picture: 'luli.jpeg' }];
+        const newContact = [{ userName: e.target.value, lastMessage: '', time: '', picture: 'luli.jpeg' }];
         setContactsList([...contactsList, ...newContact]);
     }
 
-    const changeContact = function (nickName, picture, lastMessage) {
-        currentContact.unshift({nickName: nickName, picture: picture, lastMessage: lastMessage});
-        setCurrentContact(currentContact.unshift({nickName: nickName, picture: picture, lastMessage: lastMessage}));
+    const changeContact = function (user, picture, lastMessage) {
+        currentContact.unshift({userName: user, picture: picture, lastMessage: lastMessage});
+        //startScreen = false;
+        setStartScreen(false);
+        setCurrentContact(currentContact.unshift({userName: user, picture: picture, lastMessage: lastMessage}));
     }
 
     const addImg = (file) => {
@@ -86,48 +81,42 @@ function ChatScreen() {
     }
 
     return (
-        
-            <div className="container py-5 px-4">
-                <div className="row rounded-lg overflow-hidden shadow">
-                    <div className="col-5 px-0">
-                        <div className="bg-white">
-
-                            <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
-                                <div className="media"><img src={activeUser[1].picture} alt="user" width="30" className="rounded-circle"></img>&nbsp;Hi {activeUser[1].userName}!
-                                    <div className="media-body ml-4">
-                                        <div className="d-flex align-items-center justify-content-between mb-1">
-                                        </div>
+        <div className="container py-5 px-4">
+            <div className="row rounded-lg overflow-hidden shadow">
+                <div className="col-5 px-0">
+                    <div className="bg-white">
+                        <button href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                            <div className="media"><img width="60" height="30" src={activeUser[1].picture} alt="user" className="rounded-circle"></img>&nbsp;Hi {activeUser[1].userName}!
+                                <div className="media-body ml-4">
+                                    <div className="d-flex align-items-center justify-content-between mb-1">
                                     </div>
                                 </div>
-                            </button>
-                            <div className="bg-gray px-4 py-2 bg-light">
-                                <p className="h5 mb-0 py-1">Contacts &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <span>
-                                        <AddContactButton addContact={addContact} onchange={onchange} />
-                                    </span>
-                                </p>
                             </div>
-
-                            <div className="messages-box">
-                                <div className="list-group rounded-0">
-
-                                    <ContactsListResult contactsList={contacts} changeContact={changeContact} />
-
-                                </div>
-                            </div>
+                        </button>
+                        <div className="bg-gray px-4 py-2 bg-light">
+                            <p className="h5 mb-0 py-1">Contacts &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>
+                                    <AddContactButton addContact={addContact} onchange={onchange} />
+                                </span>
+                            </p>
                         </div>
+                        <MessageScrollBar>
+                            <MessagesBox contactsList={contacts} changeContact={changeContact}/>
+                        </MessageScrollBar>
                     </div>
                 </div>
-
+            </div>
             <div className='chatBackground'>
-                <CurrentUserChat user={currentContact[0].nickName} picture={currentContact[0].picture} />
-                <Input setValue={setButtonPopUp} setValueVideo={setVideoPopUp} setValueRecord={setRecordPopUp} addMessage={addMessage} />
-                <ChatScrollBar>
-                    <Messages MessagesList={messages} />
-                </ChatScrollBar>
-                <PopUp value={buttonPopUp} setValue={setButtonPopUp} addImg={addImg} />
-                <VideoPopUp value={videoPopUp} setValue={setVideoPopUp} addVideo={addVideo} />
-                <VoicePopUp value={recordPopUp} setValue={setRecordPopUp} addAudio={addAudio}/>
+                <View startScreen={startScreen} setButtonPopUp={setButtonPopUp} setVideoPopUp={setVideoPopUp} setRecordPopUp={setRecordPopUp} messages={messages}
+                 buttonPopUp={buttonPopUp} 
+                 videoPopUp={videoPopUp} 
+                 addMessage={addMessage}
+                 addAudio={addAudio}
+                 addVideo={addVideo}
+                 addImg={addImg}
+                 currentContact={currentContact[0].userName}
+                 currentPicture={currentContact[0].picture}
+                 recordPopUp={recordPopUp}/>
             </div>
         </div>
     );
@@ -138,4 +127,4 @@ function addUserToActiveList(userName, nickName, picture) {
     activeUser.push({ 'userName': userName, 'nickName': nickName, 'picture': picture });
 }
 export default ChatScreen;
-export { addUserToActiveList };
+export { addUserToActiveList};

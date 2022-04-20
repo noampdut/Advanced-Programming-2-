@@ -15,7 +15,7 @@ function messageS(str){
     );
 }
 
-function ShowMessages(messages){
+function ShowMessages({messages}){
     return messages.map(message => {
             if (message.getM == true){
                 if (message.type.toString() == "text"){

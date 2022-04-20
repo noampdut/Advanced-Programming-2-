@@ -1,0 +1,6 @@
+.scroll-div-box{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 495px;
+    display: block;
+}

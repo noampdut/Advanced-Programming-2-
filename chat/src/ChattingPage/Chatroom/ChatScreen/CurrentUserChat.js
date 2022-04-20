@@ -1,12 +1,12 @@
 import './currentUserChat.css';
 
 function CurrentUserChat({user, picture}){
-    return(
+    return (
         <div className='back'>
             <div className="messages-box"> </div>
             <a className="list-group-item list-group-item-action active text-white rounded-0">
-                <div className="media"><img src={picture} alt="user" width="40" className="rounded-circle"></img>
-                &nbsp;{user}
+                <div className="media"><img src={picture} alt="user" height="50" width="50" className="rounded-circle"></img>
+                    &nbsp;{user}
                     <div className="media-body ml-1">
                         <div className="d-flex align-items-left justify-content-between mb-1">
                         </div>
@@ -16,4 +16,5 @@ function CurrentUserChat({user, picture}){
         </div>
     );
 }
+
 export default CurrentUserChat;

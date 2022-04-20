@@ -1,10 +1,10 @@
-import { getSpaceUntilMaxLength } from "@testing-library/user-event/dist/utils";
 import { addUserToActiveList } from "../ChattingPage/Chatroom/ChatScreen/ChatScreen";
+
 
 var usersList = [{
     'userName': 'noampdut',
     'nickName': 'noamit',
-    'picture': 'luli.jpeg',
+    'picture': 'profile.jpg',
     'password': 'n123456'
 }, {
     'userName': 'lilach',
@@ -13,8 +13,12 @@ var usersList = [{
     'password': 'l123456'
 }];
 
-function insertNewUser(userName, nickName, picture, password) {
-    usersList.push({ 'userName': userName, 'nickName': nickName, 'picture': picture, 'password': password });
+function insertNewUser(user, nickName, picture, password) {
+
+    if (picture == ""){
+        picture = "User-Profile.png";
+    }
+    usersList.push({ 'userName': user, 'nickName': nickName, 'picture': picture, 'password': password });
 
 }
 
@@ -27,9 +31,9 @@ function isExists(username) {
     return false;
 }
 
-function userIdentification(username, Password) {
+function userIdentification(user, Password) {
     for (var i = 0; i < usersList.length; i++) {
-        if (usersList[i].userName == username) {
+        if (usersList[i].userName == user) {
             if (usersList[i].password == Password) {
                 addUserToActiveList(usersList[i].userName, usersList[i].nickName, usersList[i].picture);
                 return true;
@@ -42,9 +46,9 @@ function userIdentification(username, Password) {
     return false;
 }
 
-function isInUserList(userName) {
+function isInUserList(user) {
     for (var i = 0; i < usersList.length; i++) {
-        if (usersList[i].userName == userName) {
+        if (usersList[i].userName == user) {
             return true;
         }
     }
