@@ -20,9 +20,10 @@ function ChatScreen({activeUser}) {
     const [messages, setMessage] = useState(MessagesList);
     const [startScreen, setStartScreen] = useState(true);
     const [currentContactState, setCurrentContact] = useState({userName:'', picture:''});
-    const [contactsList, setContactsList] = useState(contacts);
     const [index, setContactIndex] = useState(0);
+    const [contactsList, setContactsList] = useState(contacts);
 
+    
     const addMessage = text => {
         text = text.trim();
         if (text != ""){
@@ -45,7 +46,7 @@ function ChatScreen({activeUser}) {
             setContactsList([{ userName: user, lastMessage: '', time: '', picture: getPic(user), messages: []}, ...contactsList]);
         }
     }
-    // MB
+    
     const onchange = function (e) {
     }
 
@@ -138,8 +139,5 @@ function ChatScreen({activeUser}) {
     );
 }
 
-// function addUserToActiveList(userName, nickName, picture) {
-//     setCurrentContact([...currentContactState, { 'userName': userName, 'nickName': nickName, 'picture': picture }]);
-// }
+
 export default ChatScreen;
-//export { addUserToActiveList};

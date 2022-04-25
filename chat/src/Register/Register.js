@@ -3,9 +3,12 @@ import { useState } from "react";
 import validationPassword from './validation';
 import {insertNewUser,isExists} from '../DataBase/dataBase';
 import {useNavigate} from 'react-router-dom';
+import { getUserByUserName } from '../DataBase/dataBase';
+import contacts from '../ChattingPage/Contacts/contacts';
 
 
-const Register = () => {
+
+function Register({setActiveUser}){
     const [formData, setFormData] = useState({userName: '', nickName: '', 
     picture: '', password: '', validationPassword:''});
 
@@ -30,7 +33,12 @@ const Register = () => {
         e.preventDefault();
         if (checkForm(userName, nickName, picture, password, validationPassword)){
             insertNewUser(userName, nickName, picture, password);
-            navigate("/Login");
+            setActiveUser(getUserByUserName(userName));
+ 
+           for(var i=0; i< 5; i++) {
+               contacts.pop();
+           }
+           navigate("/ChattingPage");
         }
     };
 

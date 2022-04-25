@@ -8,7 +8,7 @@ function Login({setActiveUser}){
     const onsubmit = e => {
         let user = document.getElementById('userName').value
         if (userIdentification(user ,document.getElementById('exampleInputPassword1').value)){
-            setActiveUser(getUserByUserName(user))
+            setActiveUser(getUserByUserName(user));
             navigate("/ChattingPage");
         }
     };
