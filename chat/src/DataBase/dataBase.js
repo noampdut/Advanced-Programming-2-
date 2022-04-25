@@ -18,7 +18,7 @@ var usersList = [{
 },{
     'userName': 'Oscar',
     'nickName': 'Oscar',
-    'picture': 'User-Profile.jpg',
+    'picture': 'User-Profile.png',
     'password': 'l123456'
 
 },{

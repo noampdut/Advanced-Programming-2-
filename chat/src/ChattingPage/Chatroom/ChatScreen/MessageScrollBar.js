@@ -1,5 +1,6 @@
 import './messageScrollBar.css';
 
+
 function MessageScrollBar(props) {
     return(
         <div className='scroll-bg'>
