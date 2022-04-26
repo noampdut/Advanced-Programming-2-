@@ -11,9 +11,10 @@ import View from './View';
 
 
 function ChatScreen({activeUser}) {
-    const MessagesList = [{'type':"text", 'data':"Hello!", 'getM':true, 'time':""}, 
+    const MessagesList = [{'type':"text", 'data':"Hello!!!", 'getM':true, 'time':""}, 
                         {'type':"text", 'data':"Hii, how are you?", 'getM':false, 'time':""},
-                        {'type':"text", 'data':"Great!", 'getM':true, 'time':""}]
+                        {'type':"text", 'data':"Great!", 'getM':true, 'time':""}
+                    ]
     const [buttonPopUp, setButtonPopUp] = useState(false);
     const [videoPopUp, setVideoPopUp] = useState(false);
     const [recordPopUp, setRecordPopUp] = useState(false);
